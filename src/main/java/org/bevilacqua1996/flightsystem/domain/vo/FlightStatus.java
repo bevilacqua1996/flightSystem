@@ -15,7 +15,18 @@ public enum FlightStatus {
         return flightStatus;
     }
 
+    public static FlightStatus ofStatus(String status) {
+        for(FlightStatus flightStatus : FlightStatus.values()) {
+            if(flightStatus.getFlightStatus().equals(status)) {
+                return flightStatus;
+            }
+        }
+        throw new IllegalArgumentException( "FlightStatus not found: " + status);
+    }
+
     FlightStatus(String flightStatus) {
         this.flightStatus = flightStatus;
     }
+
+
 }

@@ -3,7 +3,10 @@ package org.bevilacqua1996.flightsystem.domain.vo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class Flight extends FlightAttributes{
+public class Flight {
+
+    private String number;
+    private Iata iata;
+    private Icao icao;
 }

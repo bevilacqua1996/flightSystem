@@ -1,6 +1,7 @@
 package org.bevilacqua1996.flightsystem.framework.input.rest;
 
 import org.bevilacqua1996.flightsystem.application.ports.input.FlightDataInputPort;
+import org.bevilacqua1996.flightsystem.application.usecases.FlightDataUserCase;
 import org.bevilacqua1996.flightsystem.domain.entities.FlightData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 public class FlightDataController {
 
     @Autowired
-    private FlightDataInputPort flightDataInputPort;
+    private FlightDataUserCase flightDataInputPort;
 
     @GetMapping(value = "/last/{quantity}", produces = "application/json")
     public ResponseEntity<List<FlightData>> getLastFlightData(@PathVariable Integer quantity) {

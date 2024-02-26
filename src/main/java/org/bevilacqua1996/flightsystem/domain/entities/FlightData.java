@@ -17,10 +17,8 @@ public class FlightData {
     private Arrival arrival;
     private Airline airline;
     private Flight flight;
-    private String aircraft;
-    private String live;
 
-    public FlightData(FlightDataID flightDataID, LocalDate flightDate, FlightStatus flightStatus, Departure departure, Arrival arrival, Airline airline, Flight flight, String aircraft, String live) {
+    public FlightData(FlightDataID flightDataID, LocalDate flightDate, FlightStatus flightStatus, Departure departure, Arrival arrival, Airline airline, Flight flight) {
         this.flightDataID = flightDataID;
         this.flightDate = flightDate;
         this.flightStatus = flightStatus;
@@ -28,7 +26,5 @@ public class FlightData {
         this.arrival = arrival;
         this.airline = airline;
         this.flight = flight;
-        this.aircraft = aircraft;
-        this.live = live;
     }
 }

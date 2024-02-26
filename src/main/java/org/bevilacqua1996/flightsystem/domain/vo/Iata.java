@@ -2,7 +2,6 @@ package org.bevilacqua1996.flightsystem.domain.vo;
 
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 public class Iata {
@@ -12,4 +11,8 @@ public class Iata {
             @Size(max = 3)
     })
     String name;
+
+    public Iata(String name) {
+        this.name = name;
+    }
 }

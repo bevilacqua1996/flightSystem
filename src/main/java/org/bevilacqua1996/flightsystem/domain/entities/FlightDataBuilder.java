@@ -61,6 +61,6 @@ public class FlightDataBuilder {
     }
 
     public FlightData createFlightData() {
-        return new FlightData(flightDataID, flightDate, flightStatus, departure, arrival, airline, flight, aircraft, live);
+        return new FlightData(flightDataID, flightDate, flightStatus, departure, arrival, airline, flight);
     }
 }

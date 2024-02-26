@@ -1,20 +1,19 @@
 package org.bevilacqua1996.flightsystem.application.ports.input;
 
+import feign.FeignException;
+import org.bevilacqua1996.flightsystem.application.ports.output.FlightDataOutputPort;
 import org.bevilacqua1996.flightsystem.application.usecases.FlightDataUserCase;
 import org.bevilacqua1996.flightsystem.domain.entities.FlightData;
 import org.bevilacqua1996.flightsystem.domain.service.FlightDataIncoming;
-import org.bevilacqua1996.flightsystem.framework.output.rest.OutputRestAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class FlightDataInputPort implements FlightDataUserCase {
 
     @Autowired
-    private OutputRestAdapter outputRestAdapter;
+    private FlightDataOutputPort outputRestAdapter;
 
     public void flightDataCheck(FlightData flightData) {
         FlightDataIncoming.checkConsistencyOfFlightData(flightData);
@@ -23,9 +22,13 @@ public class FlightDataInputPort implements FlightDataUserCase {
     @Override
     public List<FlightData> fetchLastFlightData(Integer lastFlights) {
         List<FlightData> flightDataList = new ArrayList<>();
-        outputRestAdapter.fetchLastFlightData(lastFlights).forEach(dto -> {
-            flightDataList.add(dto.toFlightData());
-        });
+        try{
+            outputRestAdapter.fetchLastFlightData(lastFlights).forEach(dto -> {
+                flightDataList.add(dto.toFlightData());
+            });
+        } catch (FeignException ex) {
+            throw new IllegalArgumentException(ex.getMessage());
+        }
         return flightDataList;
     }
 
