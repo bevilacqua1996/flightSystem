@@ -9,6 +9,6 @@ public interface FlightDataOutputPort {
 
     List<FlightDataDTO> fetchLastFlightData(Integer lastFlights);
 
-    void sendFlightDataEvents(FlightData flightData);
+    void persistFlightDataEvents(FlightData flightData);
 
 }

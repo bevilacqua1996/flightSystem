@@ -1,7 +1,7 @@
 package org.bevilacqua1996.flightsystem;
 
 import org.bevilacqua1996.flightsystem.application.ports.output.FlightDataOutputPort;
-import org.bevilacqua1996.flightsystem.application.usecases.FlightDataUserCase;
+import org.bevilacqua1996.flightsystem.application.usecases.FlightDataSimpleUserCases;
 import org.bevilacqua1996.flightsystem.domain.vo.InputPortEnum;
 import org.bevilacqua1996.flightsystem.domain.vo.OutputAdapterEnum;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +25,7 @@ public class FlightSystemApplication {
 	}
 
 	@Bean
-	public FlightDataUserCase flightDataUserCase() {
+	public FlightDataSimpleUserCases flightDataUserCase() {
 		return InputPortEnum.ofInputString(inputPort);
 	}
 

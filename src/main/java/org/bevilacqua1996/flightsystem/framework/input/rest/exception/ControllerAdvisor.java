@@ -26,5 +26,18 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(body, HttpStatus.METHOD_NOT_ALLOWED);
     }
+
+    @ExceptionHandler(UnavailablePortException.class)
+    public ResponseEntity<Object> handleUnavailablePortException(
+            UnavailablePortException ex, WebRequest request) {
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("message", ex.getMessage());
+
+        logger.error(ex.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_IMPLEMENTED);
+    }
 }
 

@@ -1,31 +1,33 @@
 package org.bevilacqua1996.flightsystem.domain.vo;
 
-import org.bevilacqua1996.flightsystem.application.ports.input.FlightDataInputPort;
-import org.bevilacqua1996.flightsystem.application.usecases.FlightDataUserCase;
+import org.bevilacqua1996.flightsystem.application.ports.input.FlightDataInternalFetchInputPort;
+import org.bevilacqua1996.flightsystem.application.ports.input.FlightDataSimpleInputPort;
+import org.bevilacqua1996.flightsystem.application.usecases.FlightDataSimpleUserCases;
 
 public enum InputPortEnum {
-    FLIGHT_DATA("FlightDataInputPort", new FlightDataInputPort());
+    FLIGHT_DATA_SIMPLE("FlightDataSimpleInputPort", new FlightDataSimpleInputPort()),
+    FLIGHT_DATA_INTERNAL_FETCH("FlightDataInternalFetchInputPort", new FlightDataInternalFetchInputPort());
 
     private final String input;
-    private final FlightDataUserCase flightDataUserCase;
+    private final FlightDataSimpleUserCases flightDataSimpleUserCases;
 
-    InputPortEnum(String input, FlightDataUserCase flightDataUserCase) {
+    InputPortEnum(String input, FlightDataSimpleUserCases flightDataSimpleUserCases) {
         this.input = input;
-        this.flightDataUserCase = flightDataUserCase;
+        this.flightDataSimpleUserCases = flightDataSimpleUserCases;
     }
 
     public String getInput() {
         return input;
     }
 
-    public FlightDataUserCase getFlightDataUserCase() {
-        return flightDataUserCase;
+    public FlightDataSimpleUserCases getFlightDataUserCase() {
+        return flightDataSimpleUserCases;
     }
 
-    public static FlightDataUserCase ofInputString(String input) {
+    public static FlightDataSimpleUserCases ofInputString(String input) {
         for(InputPortEnum inputEnum : InputPortEnum.values()) {
             if(inputEnum.getInput().equals(input)) {
-                return inputEnum.flightDataUserCase;
+                return inputEnum.flightDataSimpleUserCases;
             }
         }
         throw new RuntimeException( "Input Port not found: " + input);

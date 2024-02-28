@@ -2,7 +2,7 @@ package org.bevilacqua1996.flightsystem.application.ports.input;
 
 import feign.FeignException;
 import org.bevilacqua1996.flightsystem.application.ports.output.FlightDataOutputPort;
-import org.bevilacqua1996.flightsystem.application.usecases.FlightDataUserCase;
+import org.bevilacqua1996.flightsystem.application.usecases.FlightDataSimpleUserCases;
 import org.bevilacqua1996.flightsystem.domain.entities.FlightData;
 import org.bevilacqua1996.flightsystem.domain.service.FlightDataIncoming;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlightDataInputPort implements FlightDataUserCase {
+public class FlightDataSimpleInputPort implements FlightDataSimpleUserCases {
 
     @Autowired
     private FlightDataOutputPort outputRestAdapter;
@@ -35,6 +35,6 @@ public class FlightDataInputPort implements FlightDataUserCase {
     @Override
     public void sendEventFlightData(FlightData flightData) {
         flightDataCheck(flightData);
-        outputRestAdapter.sendFlightDataEvents(flightData);
+        outputRestAdapter.persistFlightDataEvents(flightData);
     }
 }

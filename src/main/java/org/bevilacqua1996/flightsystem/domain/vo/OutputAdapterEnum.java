@@ -1,10 +1,12 @@
 package org.bevilacqua1996.flightsystem.domain.vo;
 
 import org.bevilacqua1996.flightsystem.application.ports.output.FlightDataOutputPort;
-import org.bevilacqua1996.flightsystem.framework.output.rest.OutputRestAdapter;
+import org.bevilacqua1996.flightsystem.framework.output.rest.OutputRestKafkaAdapter;
+import org.bevilacqua1996.flightsystem.framework.output.rest.OutputRestRedisAdapter;
 
 public enum OutputAdapterEnum {
-    FLIGHT_DATA("OutputRestAdapter", new OutputRestAdapter());
+    FLIGHT_DATA_KAFKA("OutputRestKafkaAdapter", new OutputRestKafkaAdapter()),
+    FLIGHT_DATA_REDIS("OutputRestRedisAdapter", new OutputRestRedisAdapter());
 
     private final String output;
     private final FlightDataOutputPort flightDataOutputPort;
